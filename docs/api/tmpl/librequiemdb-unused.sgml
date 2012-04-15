@@ -1,0 +1,193 @@
+<!-- ##### FUNCTION requiem_error_make ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Returns: 
+
+<!-- ##### FUNCTION requiemdb_get_format ##### -->
+<para>
+
+</para>
+
+@db: 
+@Returns: 
+
+<!-- ##### STRUCT requiemdb_plugin_format ##### -->
+<para>
+
+</para>
+
+@check_schema_version: 
+@get_alert_idents: 
+@get_heartbeat_idents: 
+@get_message_ident_count: 
+@get_next_message_ident: 
+@destroy_message_idents_resource: 
+@get_alert: 
+@get_heartbeat: 
+@delete_alert: 
+@delete_alert_from_list: 
+@delete_alert_from_result_idents: 
+@delete_heartbeat: 
+@delete_heartbeat_from_list: 
+@delete_heartbeat_from_result_idents: 
+@insert_message: 
+@get_values: 
+@get_next_values: 
+@destroy_values_resource: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_build_limit_offset_string_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_build_time_constraint_string_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_build_time_interval_string_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_close_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_escape_binary_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_escape_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_fetch_field_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_fetch_row_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_get_column_count_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_get_column_name_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_get_column_num_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_get_error_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_get_error_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@Returns: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_get_row_count_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_open_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_query_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_resource_destroy_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_error_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+<!-- ##### MACRO requiemdb_plugin_sql_unescape_binary_func ##### -->
+<para>
+
+</para>
+
+@p: 
+
+<!-- ##### FUNCTION requiemdb_sql_get_operator_string ##### -->
+<para>
+
+</para>
+
+@operator: 
+@Returns: 
+
+<!-- ##### ENUM requiemdb_sql_status_t ##### -->
+<para>
+
+</para>
+
+@REQUIEMDB_SQL_STATUS_DISCONNECTED: 
+@REQUIEMDB_SQL_STATUS_CONNECTED: 
+@REQUIEMDB_SQL_STATUS_TRANSACTION: 
+

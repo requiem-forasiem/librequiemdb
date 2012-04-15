@@ -1,0 +1,137 @@
+<!-- ##### SECTION Title ##### -->
+requiemdb-path-selection
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM requiemdb_selected_path_flags_t ##### -->
+<para>
+
+</para>
+
+@REQUIEMDB_SELECTED_OBJECT_FUNCTION_MIN: 
+@REQUIEMDB_SELECTED_OBJECT_FUNCTION_MAX: 
+@REQUIEMDB_SELECTED_OBJECT_FUNCTION_AVG: 
+@REQUIEMDB_SELECTED_OBJECT_FUNCTION_STD: 
+@REQUIEMDB_SELECTED_OBJECT_FUNCTION_COUNT: 
+@REQUIEMDB_SELECTED_OBJECT_GROUP_BY: 
+@REQUIEMDB_SELECTED_OBJECT_ORDER_ASC: 
+@REQUIEMDB_SELECTED_OBJECT_ORDER_DESC: 
+
+<!-- ##### TYPEDEF requiemdb_path_selection_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF requiemdb_selected_path_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION requiemdb_selected_path_new ##### -->
+<para>
+
+</para>
+
+@selected_path: 
+@path: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_selected_path_new_string ##### -->
+<para>
+
+</para>
+
+@selected_path: 
+@str: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_selected_path_destroy ##### -->
+<para>
+
+</para>
+
+@selected_path: 
+
+
+<!-- ##### FUNCTION requiemdb_selected_path_get_path ##### -->
+<para>
+
+</para>
+
+@selected_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_selected_path_get_flags ##### -->
+<para>
+
+</para>
+
+@selected_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_path_selection_new ##### -->
+<para>
+
+</para>
+
+@path_selection: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_path_selection_destroy ##### -->
+<para>
+
+</para>
+
+@path_selection: 
+
+
+<!-- ##### FUNCTION requiemdb_path_selection_add ##### -->
+<para>
+
+</para>
+
+@path_selection: 
+@selected_path: 
+
+
+<!-- ##### FUNCTION requiemdb_path_selection_get_next ##### -->
+<para>
+
+</para>
+
+@path_selection: 
+@selected_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_path_selection_get_count ##### -->
+<para>
+
+</para>
+
+@path_selection: 
+@Returns: 
+
+

@@ -1,0 +1,70 @@
+<!-- ##### SECTION Title ##### -->
+requiemdb-error
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM requiemdb_error_code_t ##### -->
+<para>
+
+</para>
+
+@REQUIEMDB_ERROR_NO_ERROR: 
+@REQUIEMDB_ERROR_GENERIC: 
+@REQUIEMDB_ERROR_INVALID_SETTINGS_STRING: 
+@REQUIEMDB_ERROR_CONNECTION: 
+@REQUIEMDB_ERROR_QUERY: 
+@REQUIEMDB_ERROR_INVALID_COLUMN_NUM: 
+@REQUIEMDB_ERROR_INVALID_COLUMN_NAME: 
+@REQUIEMDB_ERROR_INVALID_VALUE: 
+@REQUIEMDB_ERROR_INVALID_VALUE_TYPE: 
+@REQUIEMDB_ERROR_UNKNOWN_SQL_PLUGIN: 
+@REQUIEMDB_ERROR_UNKNOWN_FORMAT_PLUGIN: 
+@REQUIEMDB_ERROR_ALREADY_IN_TRANSACTION: 
+@REQUIEMDB_ERROR_NOT_IN_TRANSACTION: 
+@REQUIEMDB_ERROR_INVALID_MESSAGE_IDENT: 
+@REQUIEMDB_ERROR_INVALID_SELECTED_OBJECT_STRING: 
+@REQUIEMDB_ERROR_INVALID_OBJECT_SELECTION: 
+@REQUIEMDB_ERROR_SCHEMA_VERSION_TOO_OLD: 
+@REQUIEMDB_ERROR_SCHEMA_VERSION_TOO_RECENT: 
+@REQUIEMDB_ERROR_SCHEMA_VERSION_INVALID: 
+@REQUIEMDB_ERROR_CANNOT_LOAD_SQL_PLUGIN: 
+@REQUIEMDB_ERROR_CANNOT_LOAD_FORMAT_PLUGIN: 
+
+<!-- ##### TYPEDEF requiemdb_error_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION requiemdb_strerror ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiem_error_from_errno ##### -->
+<para>
+
+</para>
+
+@Varargs: 
+@Returns: 
+
+

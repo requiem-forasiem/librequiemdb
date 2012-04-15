@@ -1,0 +1,396 @@
+<!-- ##### SECTION Title ##### -->
+requiemdb-plugin-sql
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF requiemdb_plugin_sql_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_get_column_name_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@resource: 
+@column_num: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_get_operator_string_func_t ##### -->
+<para>
+
+</para>
+
+@operator: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_build_constraint_string_func_t ##### -->
+<para>
+
+</para>
+
+@out: 
+@field: 
+@operator: 
+@value: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_unescape_binary_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@input: 
+@output: 
+@output_size: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_escape_binary_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@input: 
+@input_size: 
+@output: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_query_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@query: 
+@res: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_get_column_num_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@resource: 
+@column_name: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_resource_destroy_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@resource: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_build_timestamp_string_func_t ##### -->
+<para>
+
+</para>
+
+@t: 
+@out: 
+@size: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_build_limit_offset_string_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@limit: 
+@offset: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_build_timestamp_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_build_time_interval_string_func_t ##### -->
+<para>
+
+</para>
+
+@type: 
+@value: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_open_func_t ##### -->
+<para>
+
+</para>
+
+@settings: 
+@session: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_fetch_field_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@resource: 
+@row: 
+@column_num: 
+@value: 
+@len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_operator_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_close_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_build_time_constraint_string_func_t ##### -->
+<para>
+
+</para>
+
+@output: 
+@field: 
+@type: 
+@operator: 
+@value: 
+@gmt_offset: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_escape_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@input: 
+@input_size: 
+@output: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION requiemdb_plugin_sql_fetch_row_func_t ##### -->
+<para>
+
+</para>
+
+@session: 
+@resource: 
+@row: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_new ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_open_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_close_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_escape_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_escape_binary_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_unescape_binary_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_query_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_column_count_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_row_count_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_column_name_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_get_column_num_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_resource_destroy_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_fetch_row_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_fetch_field_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_build_time_constraint_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_build_time_interval_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_build_limit_offset_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+
+<!-- ##### FUNCTION requiemdb_plugin_sql_set_build_constraint_string_func ##### -->
+<para>
+
+</para>
+
+@plugin: 
+@func: 
+
+

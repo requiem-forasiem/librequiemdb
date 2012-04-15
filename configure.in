@@ -1,0 +1,349 @@
+AC_INIT
+AC_CONFIG_SRCDIR([src])
+AC_PREREQ(2.59)
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+
+
+dnl **********************************************************
+dnl * Version and release information
+dnl **********************************************************
+
+librequiemdb_major=1
+librequiemdb_minor=0
+librequiemdb_micro=0
+librequiemdb_patchlevel=
+librequiemdb_version=$librequiemdb_major.$librequiemdb_minor.$librequiemdb_micro$librequiemdb_patchlevel
+
+
+dnl **********************************************************
+dnl * Library soname (http://sources.redhat.com/autobook/autobook/autobook_91.html#SEC91)
+dnl **********************************************************
+librequiemdb_current=4
+librequiemdb_revision=10
+librequiemdb_age=4
+LIBREQUIEMDB_SONAME=$librequiemdb_current:$librequiemdb_revision:$librequiemdb_age
+
+
+AM_INIT_AUTOMAKE(librequiemdb, $librequiemdb_version)
+AC_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+
+
+dnl **********************************************************
+dnl * Check required program.
+dnl **********************************************************
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+AC_PROG_CC
+
+BINDINGS_CC="$CC"
+
+
+dnl **********************************************************
+dnl * Setup GnuLib, libtool and libltdl.
+dnl **********************************************************
+
+gl_EARLY
+AC_LIBTOOL_DLOPEN
+AC_LIBTOOL_WIN32_DLL
+AM_DISABLE_STATIC
+AC_PROG_LIBTOOL
+
+
+
+
+dnl **************************************************
+dnl * Setup custom compiler flags                    *
+dnl **************************************************
+
+AC_MSG_CHECKING(for cpu-specific compiler flags)
+if test "$host_cpu" == "x86_64" && test $enable_static = "yes"; then
+        AC_MSG_RESULT(x86_64/static: adding -fPIC)
+        AX_C_CHECK_FLAG(-fPIC, , , CPPFLAGS="$CPPFLAGS -fPIC")
+else
+        AC_MSG_RESULT(none needed)
+fi
+
+AC_MSG_CHECKING(for platform-specific compiler flags)
+case "$host_os" in
+ darwin*)
+        # It may be called "cc", but it's really a GCC derivative
+        # with a problematic special precompiler and precompiled
+        # headers; turn off the special precompiler, as some
+        # apparently-legal code won't compile with its precompiled
+        # headers.
+        AC_MSG_RESULT(Darwin: adding -no-cpp-precomp)
+        AX_C_CHECK_FLAG(-no-cpp-precomp, , , PCFLAGS="$PCFLAGS -no-cpp-precomp")
+        libext=dylib
+        ;;
+ *)
+        libext=so
+        AC_MSG_RESULT(none needed)
+        ;;
+esac
+
+AX_LD_CHECK_FLAG(-z relro, , , LDFLAGS="$LDFLAGS -z relro")
+AX_LD_CHECK_FLAG(-z now, , , LDFLAGS="$LDFLAGS -z now")
+
+
+for i in -Wall -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
+         -Wbad-function-cast -Wcast-qual -Wcast-align -Wnested-externs -Wunused \
+         -Wformat -Wformat-security; do
+        AX_C_CHECK_FLAG($i, , , PCFLAGS="$PCFLAGS $i")
+done
+
+if test x$buggy_pthread_initializers = xyes; then
+   AX_C_CHECK_FLAG(-Wno-missing-braces, , , PCFLAGS="$PCFLAGS -Wno-missing-braces")
+fi
+
+
+dnl **************************************************
+dnl * Check for librequiem                           *
+dnl **************************************************
+
+AM_PATH_LIBREQUIEM(0.9.9, , AC_MSG_ERROR(Cannot find librequiem: Is librequiem-config in the path?), no)
+
+
+dnl ***************************************************
+dnl * Check for the MySQL library (MySQL plugin       *
+dnl ***************************************************
+AX_LIB_MYSQL()
+with_mysql="no"
+if test x$MYSQL_CONFIG != x; then
+        with_mysql="yes"
+        LIBS_bkp=$LIBS
+        LIBS="$MYSQL_LDFLAGS"
+        AC_CHECK_FUNC(mysql_real_escape_string, AC_DEFINE(HAVE_MYSQL_REAL_ESCAPE_STRING, , mysql_real_escape_string function present))
+        LIBS=$LIBS_bkp
+fi
+
+AM_CONDITIONAL(HAVE_MYSQL, test x$with_mysql = xyes)
+
+
+dnl ********************************************************
+dnl * Check for the PostgreSQL library (PostgreSQL plugin) *
+dnl ********************************************************
+AX_LIB_POSTGRESQL()
+
+with_pgsql="no"
+if test x$POSTGRESQL_VERSION != x; then
+        with_pgsql="yes"
+        LIBS_bkp=$LIBS
+        LIBS="$POSTGRESQL_LDFLAGS"
+        AC_CHECK_FUNC(PQserverVersion, AC_DEFINE(HAVE_PQSERVERVERSION, , [Define if PQserverVersion function is available]))
+        LIBS=$LIBS_bkp;
+fi
+
+AM_CONDITIONAL(HAVE_PGSQL, test x$with_pgsql = xyes)
+
+dnl ********************************************************
+dnl * Check for the SQLite3 library (SQLite3 plugin)       *
+dnl ********************************************************
+AX_LIB_SQLITE3("3.0.0")
+
+if test x$SQLITE3_VERSION != x; then
+        with_sqlite3="yes"
+else
+        with_sqlite3="no"
+fi
+
+AM_CONDITIONAL(HAVE_SQLITE3, test x$with_sqlite3 = xyes)
+
+
+
+dnl **************************************************
+dnl * Swig support                                   *
+dnl **************************************************
+
+AC_ARG_WITH(swig, AC_HELP_STRING(--with-swig@<:@=PATH@:>@, Re-generate perl/python bindings sources @<:@default=auto@:>@),
+            [swig_required=true; if test x$withval = xyes; then with_swig="swig"; fi], with_swig="swig")
+
+if test x$with_swig != xno; then
+   AC_PATH_PROG(SWIG, `basename $with_swig`, no, `dirname $with_swig`:$PATH)
+
+   if test x$SWIG = xno; then
+      if test x$swig_required = xtrue; then
+         AC_MSG_ERROR([Could not find $with_swig binary])
+      fi
+   fi
+fi
+
+AM_CONDITIONAL(HAVE_SWIG, test x$SWIG != xno)
+
+
+dnl **************************************************
+dnl * Perl support                                   *
+dnl **************************************************
+
+AC_ARG_WITH(perl, AC_HELP_STRING(--with-perl@<:@=PATH@:>@, Enable support for perl binding @<:@default=auto@:>@),
+            [perl_required=true; if test x$withval = xyes; then with_perl="perl"; fi], with_perl="perl")
+
+if test x$with_perl != xno; then
+
+   AC_PATH_PROG(PERL, `basename $with_perl`, no, `dirname $with_perl`:$PATH)
+
+   if test x$PERL = xno; then
+      if test x$perl_required = xtrue; then
+         AC_MSG_ERROR([Could not find $with_perl binary])
+      fi
+
+      with_perl=no
+   else
+      PERL_CFLAGS="-I`$PERL -e 'use Config; print $Config{archlib}'`/CORE"
+
+      old_CPPFLAGS="$CPPFLAGS"
+      CPPFLAGS="$CPPFLAGS $PERL_CFLAGS"
+
+      AC_CHECK_HEADER(EXTERN.h, [AC_CHECK_HEADER(perl.h, with_perl=yes, with_perl=no, [#include <EXTERN.h>])], with_perl=no)
+      CPPFLAGS="$old_CPPFLAGS"
+   fi
+fi
+
+AM_CONDITIONAL(HAVE_PERL, test x$with_perl = xyes)
+
+
+PERL_INSTALLDIRS="site"
+
+AC_ARG_WITH(perl-installdirs, AC_HELP_STRING(--with-perl-installdirs=@<:@site|vendor@:>@, Specify where to install the Perl module @<:@default=site@:>@),
+            PERL_INSTALLDIRS="$withval")
+
+if test x$PERL_INSTALLDIRS != xsite && test x$PERL_INSTALLDIRS != xvendor; then
+        AC_MSG_ERROR(Invalid value for --with-perl-installdirs: only "site" or "vendor" supported.)
+fi
+
+PERL_EXTRA_PARAMS="INSTALLDIRS=$PERL_INSTALLDIRS"
+AC_SUBST(PERL_EXTRA_PARAMS)
+
+
+
+dnl **************************************************
+dnl * Python support                                 *
+dnl **************************************************
+
+
+AC_ARG_WITH(python, AC_HELP_STRING(--with-python@<:@=PATH@:>@, Enable support for python binding @<:@default=auto@:>@),
+            [python_required=true; if test x$withval = xyes; then with_python="python"; fi], with_python="python")
+
+if test x$with_python != xno; then
+
+   AC_PATH_PROG(PYTHON, `basename $with_python`, no, `dirname $with_python`:$PATH)
+   if test x$PYTHON = xno; then
+      if test x$python_required = xtrue; then
+         AC_MSG_ERROR([Could not find $with_python binary])
+      fi
+
+      with_python=no
+   else
+      old_CPPFLAGS="$CPPFLAGS"
+      CPPFLAGS="-I`$PYTHON -c 'from distutils.sysconfig import get_python_inc; print get_python_inc()'`"
+
+      AC_CHECK_HEADER(Python.h, with_python=yes, with_python=no)
+      CPPFLAGS="$old_CPPFLAGS"
+   fi
+fi
+
+AM_CONDITIONAL(HAVE_PYTHON, test x$with_python = xyes)
+
+
+dnl **************************************************
+dnl * Check for missing function replacement         *
+dnl **************************************************
+gl_SOURCE_BASE(libmissing)
+gl_M4_BASE(libmissing/m4)
+gl_INIT
+
+
+dnl **************************************************
+dnl * Check for GTK-DOC                              *
+dnl **************************************************
+
+GTK_DOC_CHECK(1.0)
+
+
+dnl **************************************************
+dnl * Typedefs, structures, compiler characteristics.*
+dnl **************************************************
+
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+
+
+
+dnl **************************************************
+dnl * Check for GTK-DOC                              *
+dnl **************************************************
+
+GTK_DOC_CHECK(1.0)
+
+
+dnl **************************************************
+dnl * Setup build variable                           *
+dnl **************************************************
+
+AC_SUBST(PCFLAGS)
+AC_SUBST(BINDINGS_CC)
+AC_SUBST(LIBREQUIEMDB_SONAME)
+
+AS_AC_EXPAND(LIBDIR, $libdir)
+AS_AC_EXPAND(DATADIR, $datadir)
+AS_AC_EXPAND(SYSCONFDIR, $sysconfdir)
+
+
+db_plugin_dir=$LIBDIR/librequiemdb/plugins
+sql_plugin_dir=$db_plugin_dir/sql
+format_plugin_dir=$db_plugin_dir/formats
+format_schema_dir=$DATADIR/librequiemdb
+
+AC_SUBST(db_plugin_dir)
+AC_SUBST(sql_plugin_dir)
+AC_SUBST(format_plugin_dir)
+AC_SUBST(format_schema_dir)
+
+
+AC_CONFIG_FILES([
+librequiemdb-config
+
+Makefile
+m4/Makefile
+libmissing/Makefile
+libmissing/tests/Makefile
+
+src/Makefile
+src/include/Makefile
+src/include/requiemdb-version.h
+
+plugins/Makefile
+
+plugins/sql/Makefile
+plugins/sql/mysql/Makefile
+plugins/sql/pgsql/Makefile
+plugins/sql/sqlite3/Makefile
+
+plugins/format/Makefile
+plugins/format/classic/Makefile
+plugins/format/classic/include/Makefile
+
+docs/Makefile
+docs/api/Makefile
+docs/manpages/Makefile
+
+bindings/Makefile
+bindings/perl/Makefile.PL
+bindings/python/setup.py
+
+])
+AC_CONFIG_COMMANDS([default],[[ chmod +x librequiemdb-config ]],[[]])
+AC_OUTPUT
+
+
+echo
+echo "*** Dumping configuration ***"
+echo "    - Generate documentation      : $enable_gtk_doc"
+echo "    - Enable MySQL plugin         : $with_mysql"
+echo "    - Enable PostgreSQL plugin    : $with_pgsql"
+echo "    - Enable SQLite3 plugin       : $with_sqlite3"
+echo "    - Perl binding                : $with_perl"
+echo "    - Python binding              : $with_python";

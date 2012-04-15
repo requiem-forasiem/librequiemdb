@@ -1,0 +1,84 @@
+.TH Requiem "1" "June 2007" "requiemdb-admin" "User Commands"
+.SH NAME
+requiemdb-admin \- tool to copy, move, delete, save or restore a requiem database
+.SH SYNOPSIS
+.B requiemdb-admin
+\fIcopy|move|delete|load|save\fR \fIarguments\fR
+.SH DESCRIPTION
+.\" Add any additional description here
+.PP
+requiemdb-admin can be used to copy, move, delete, save or restore a requiem
+database, partly or in whole, while preserving IDMEF data consistency.
+.PP
+Mandatory arguments
+.TP
+\fBcopy\fR
+Make a copy of a Requiem database to another database.
+.TP
+\fBdelete\fR
+Delete content of a Requiem database.
+.TP
+\fBload\fR
+Load a Requiem database from a file.
+.TP
+\fBmove\fR
+Move content of a Requiem database to another database.
+.TP
+\fBsave\fR
+Save a Requiem database to a file.
+.PP
+Running a command without providing arguments will display a detailed help.
+.SH EXAMPLES
+Obtaining help on a specific command:
+
+.RS
+.nf
+# requiemdb-admin save
+Usage  : save <alert|heartbeat> <database> <filename> [options]
+Example: requiemdb-admin save alert "type=mysql name=dbname user=requiem" outputfile
+
+Save messages from <database> into [filename].
+If no filename argument is provided, data will be written to standard output.
+
+Database arguments:
+  type  : Type of database (mysql/pgsql).
+  name  : Name of the database.
+  user  : User to access the database.
+  pass  : Password to access the database.
+
+Valid options:
+  --offset <offset>               : Skip processing until 'offset' events.
+  --count <count>                 : Process at most count events.
+  --query-logging [filename]      : Log SQL query to the specified file.
+  --criteria <criteria>           : Only process events matching criteria.
+  --events-per-transaction        : Maximum number of event to process per transaction (default 1000).
+.fi
+.RE
+
+Requiemdb-admin can be useful to delete events from a requiem database :
+
+.RS
+.nf
+requiemdb-admin delete alert --criteria <criteria> "type=<mysql> name=<dbname> user=<requiem-user> pass=<pass>"
+.fi
+.RE
+
+where \fIcriteria\fR is an IDMEF criteria :
+
+.RS
+.nf
+requiemdb-admin delete alert --criteria "alert.classification.text == 'UDP packet dropped'" "type=mysql name=requiem user=requiem-user pass=requiem-pass"
+.fi
+.RE
+
+This will delete all event with the classification text "UDP packet dropped" from the database.
+.SH SEE ALSO
+Requiem homepage: \fIhttp://requiem-forasiem.github.com/\fR
+.SH AUTHOR
+This manpage was Written by Pierre Chifflier.
+.SH COPYRIGHT
+Copyright \(co 2006 PreludeIDS Technologies.
+.br
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+There is NO WARRANTY, to the extent permitted by law.

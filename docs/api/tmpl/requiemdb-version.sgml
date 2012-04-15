@@ -1,0 +1,35 @@
+<!-- ##### SECTION Title ##### -->
+requiemdb-version
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO LIBREQUIEMDB_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION requiemdb_check_version ##### -->
+<para>
+
+</para>
+
+@req_version: 
+@Returns: 
+
+

@@ -1,0 +1,44 @@
+RequiemDB Library (http://requiem-forasiem.github.com/)
+
+
+RequiemDB Library Overview
+========================
+
+The RequiemDB Library provides an abstraction layer upon the type and the format
+of the database used to store IDMEF alerts.
+It allows developers to use the Requiem IDMEF database easily and efficiently without worrying about SQL,
+and to access the database independently of the type/format of the database.
+
+
+
+IRC
+===
+
+If there's something you just can't find out elsewhere, you want to 
+give feedback directly to the authors or you're just bored, visit 
+#requiem on irc.freenode.net
+
+
+
+Get Support
+===========
+
+
+Requiem-user mailing list archives can be accessed at:
+	https://groups.google.com/forum/#!forum/requiem-forasiem
+
+
+
+How to install the RequiemDB Library
+==================================
+
+
+If you want to build RequiemDB, unpack the tarball and cd into the
+newly created directory. Then type :
+
+	./configure
+	make
+	
+If everything works, su to root and type:
+
+	make install

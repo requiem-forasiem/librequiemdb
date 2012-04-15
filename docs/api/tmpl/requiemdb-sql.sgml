@@ -1,0 +1,480 @@
+<!-- ##### SECTION Title ##### -->
+requiemdb-sql
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO REQUIEMDB_SQL_TIMESTAMP_STRING_SIZE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM requiemdb_sql_time_constraint_type_t ##### -->
+<para>
+
+</para>
+
+@REQUIEMDB_SQL_TIME_CONSTRAINT_YEAR: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_MONTH: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_YDAY: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_MDAY: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_WDAY: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_HOUR: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_MIN: 
+@REQUIEMDB_SQL_TIME_CONSTRAINT_SEC: 
+
+<!-- ##### TYPEDEF requiemdb_sql_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF requiemdb_sql_table_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF requiemdb_sql_row_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF requiemdb_sql_field_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION requiemdb_sql_new ##### -->
+<para>
+
+</para>
+
+@new: 
+@type: 
+@settings: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_destroy ##### -->
+<para>
+
+</para>
+
+@sql: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_enable_query_logging ##### -->
+<para>
+
+</para>
+
+@sql: 
+@filename: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_disable_query_logging ##### -->
+<para>
+
+</para>
+
+@sql: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_get_plugin_error ##### -->
+<para>
+
+</para>
+
+@sql: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_query ##### -->
+<para>
+
+</para>
+
+@sql: 
+@query: 
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_query_sprintf ##### -->
+<para>
+
+</para>
+
+@sql: 
+@table: 
+@format: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_insert ##### -->
+<para>
+
+</para>
+
+@sql: 
+@table: 
+@fields: 
+@format: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_build_limit_offset_string ##### -->
+<para>
+
+</para>
+
+@sql: 
+@limit: 
+@offset: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_transaction_start ##### -->
+<para>
+
+</para>
+
+@sql: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_transaction_end ##### -->
+<para>
+
+</para>
+
+@sql: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_transaction_abort ##### -->
+<para>
+
+</para>
+
+@sql: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_escape_fast ##### -->
+<para>
+
+</para>
+
+@sql: 
+@input: 
+@input_size: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_escape ##### -->
+<para>
+
+</para>
+
+@sql: 
+@input: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_escape_binary ##### -->
+<para>
+
+</para>
+
+@sql: 
+@input: 
+@input_size: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_unescape_binary ##### -->
+<para>
+
+</para>
+
+@sql: 
+@input: 
+@input_size: 
+@output: 
+@output_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_destroy ##### -->
+<para>
+
+</para>
+
+@table: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_get_column_name ##### -->
+<para>
+
+</para>
+
+@table: 
+@column_num: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_get_column_num ##### -->
+<para>
+
+</para>
+
+@table: 
+@column_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_get_column_count ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_get_row_count ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_table_fetch_row ##### -->
+<para>
+
+</para>
+
+@table: 
+@row: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_row_fetch_field ##### -->
+<para>
+
+</para>
+
+@row: 
+@column_num: 
+@field: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_row_fetch_field_by_name ##### -->
+<para>
+
+</para>
+
+@row: 
+@column_name: 
+@field: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_get_value ##### -->
+<para>
+
+</para>
+
+@field: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_get_len ##### -->
+<para>
+
+</para>
+
+@field: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_int8 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_uint8 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_int16 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_uint16 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_int32 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_uint32 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_int64 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_uint64 ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_float ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_double ##### -->
+<para>
+
+</para>
+
+@field: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_field_to_string ##### -->
+<para>
+
+</para>
+
+@field: 
+@output: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_build_criterion_string ##### -->
+<para>
+
+</para>
+
+@sql: 
+@output: 
+@field: 
+@operator: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_time_from_timestamp ##### -->
+<para>
+
+</para>
+
+@time: 
+@time_buf: 
+@gmtoff: 
+@usec: 
+@Returns: 
+
+
+<!-- ##### FUNCTION requiemdb_sql_time_to_timestamp ##### -->
+<para>
+
+</para>
+
+@sql: 
+@time: 
+@time_buf: 
+@time_buf_size: 
+@gmtoff_buf: 
+@gmtoff_buf_size: 
+@usec_buf: 
+@usec_buf_size: 
+@Returns: 
+
+
